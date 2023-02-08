@@ -80,7 +80,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>me.mvdev.gitbgen/me.mvdev.gitbgen.HelloApplication</mainClass>
+                            <mainClass>me.mvdev.gitbgen/me.mvdev.gitbgen.controller.MainApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
