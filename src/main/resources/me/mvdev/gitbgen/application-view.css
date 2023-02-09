@@ -1,0 +1,26 @@
+
+.app-primary-bgr {
+    -fx-background-color: #404258;
+}
+
+.app-secondary-bgr {
+    -fx-background-color: #474E68;
+}
+
+.application-main-vbox {
+    /*-fx-width: 100%;*/
+}
+
+.app-header {
+    -fx-alignment: center;
+}
+
+.app-second-section {
+    -fx-pref-width: ${screen.visualBounds.width};
+    -fx-min-height: 100%;
+}
+
+.app-logo {
+    -fx-alignment: center;
+}
+
