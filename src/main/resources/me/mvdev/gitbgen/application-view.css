@@ -1,10 +1,17 @@
-
 .app-primary-bgr {
     -fx-background-color: #404258;
 }
 
 .app-secondary-bgr {
     -fx-background-color: #474E68;
+}
+
+.app-tertiary-bgr {
+    -fx-background-color: #50577A;
+}
+
+.app-quaternary-bgr {
+    -fx-background-color: #FB2576;
 }
 
 .application-main-vbox {
@@ -16,11 +23,121 @@
 }
 
 .app-second-section {
-    -fx-pref-width: ${screen.visualBounds.width};
+    /*-fx-pref-width: ${screen.visualBounds.width};*/
     -fx-min-height: 100%;
 }
 
 .app-logo {
     -fx-alignment: center;
+}
+
+.variables-pane-grid-column {
+    -fx-alignment: center;
+    -fx-padding: 30;
+}
+
+.variables-pane {
+    /*-fx-background-color: #474E68;*/
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+
+}
+
+/* Area inside scroll pane */
+.code-area-pane {
+
+}
+
+/* Dongle-Regular - Primary Font */
+@font-face {
+    font-family: "Dongle-Regular";
+    src: url("Dongle-Regular.ttf");
+}
+
+.app-primary-font {
+    /*-fx-font-family: "Dongle-Regular";*/
+    /*-fx-font-size: 20;*/
+    -fx-font: 20 "Dongle-Regular";
+    -fx-text-fill: white;
+}
+
+.variable-counter {
+    -fx-font-size: 20;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+}
+
+.text-field-design {
+    -fx-focus-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.round-input-names {
+    -fx-background-radius: 10 0 0 10;
+}
+
+.round-input-values {
+    -fx-background-radius: 0 10 10 0;
+}
+
+.generate-command-button {
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 0;
+}
+
+.generate-text-area {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 0;
+}
+
+
+
+
+
+
+
+/* Ignore */
+.title-pane-header {
+    -fx-background-color: lightgray;
+    -fx-padding: 10;
+    -fx-alignment: center_left;
+    -fx-spacing: 10;
+}
+
+.title-pane-header-text {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.title-pane-header-count-background {
+    -fx-background-color: lightblue;
+    -fx-min-width: 20;
+    -fx-min-height: 20;
+    -fx-max-width: 20;
+    -fx-max-height: 20;
+    -fx-border-radius: 10;
+    -fx-alignment: center;
+}
+
+.title-pane-header-count-text {
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+.title-pane-header-dropdown {
+    -fx-background-color: lightgray;
+    -fx-min-width: 20;
+    -fx-min-height: 20;
+    -fx-max-width: 20;
+    -fx-max-height: 20;
+    -fx-alignment: center;
+}
+
+.title-pane-content {
+    -fx-background-color: lightgray;
+    -fx-padding: 10;
 }
 
