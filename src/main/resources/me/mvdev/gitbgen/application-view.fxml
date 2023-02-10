@@ -135,7 +135,7 @@
                                           </Text>
                                        </children>
                                     </VBox>
-                                    <ImageView id="dropDownUpIcon" fx:id="dropDownUpIcon" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="dropDownUpIcon" fx:id="dropDownUpIcon" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="27.0" onMouseClicked="#handleVariableDropDown" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@slide-down-rounded.png" />
                                        </image>
@@ -144,14 +144,17 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <VBox id="varialbeDropDownPane" fx:id="varialbeDropDownPane" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
+                        <VBox id="varialbeDropDownPane" fx:id="varialbeDropDownPane" alignment="TOP_CENTER" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
                            <children>
-                              <VBox id="variableListPane" fx:id="variableListPane" />
+                              <VBox id="variableListPane" fx:id="variableListPane" alignment="TOP_CENTER" spacing="10.0">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin></VBox>
                               <HBox spacing="8.0">
                                  <children>
                                     <HBox>
                                        <children>
-                                          <TextField id="variableNameField" fx:id="variableNameField" promptText="Name">
+                                          <TextField id="variableNameField" fx:id="variableNameField" onKeyTyped="#handleVariableNameField" promptText="Name">
                                              <styleClass>
                                                 <String fx:value="app-tertiary-bgr" />
                                                 <String fx:value="text-field-design" />
@@ -293,7 +296,7 @@
                            <children>
                               <VBox alignment="BASELINE_LEFT" prefHeight="66.0" prefWidth="428.0">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-primary-font" text="Flags" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-primary-font" text="Flags--" />
                                  </children>
                               </VBox>
                               <HBox alignment="TOP_RIGHT" prefHeight="142.0" prefWidth="190.0" spacing="20.0" style="-fx-padding: 10;">
@@ -311,7 +314,7 @@
                                           </Text>
                                        </children>
                                     </VBox>
-                                    <ImageView id="flagDropDownUpIcon" fx:id="flagDropDownUpIcon" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="flagDropDownUpIcon" fx:id="flagDropDownUpIcon" fitHeight="23.0" fitWidth="27.0" onMouseClicked="#handleFlagDropDown" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@slide-down-rounded.png" />
                                        </image>
@@ -320,12 +323,15 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <VBox id="flagDropDownPane" fx:id="flagDropDownPane" spacing="5.0" GridPane.rowIndex="1">
+                        <VBox id="flagDropDownPane" fx:id="flagDropDownPane" alignment="TOP_CENTER" spacing="5.0" GridPane.rowIndex="1">
                            <children>
-                              <VBox id="flagListPane" fx:id="flagListPane" />
+                              <VBox id="flagListPane" fx:id="flagListPane" alignment="TOP_CENTER" spacing="10.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin></VBox>
                               <HBox spacing="8.0">
                                  <children>
-                                    <TextField id="flagNameInput" fx:id="flagNameInput" promptText="Name">
+                                    <TextField id="flagNameInput" fx:id="flagNameInput" onKeyTyped="#handleFlagNameField" promptText="Name">
                                        <styleClass>
                                           <String fx:value="app-tertiary-bgr" />
                                           <String fx:value="text-field-design" />
@@ -355,7 +361,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="77.0" spacing="25.0">
                                        <children>
-                                          <ImageView id="flagAddBtn" fx:id="flagAddBtn" fitHeight="40.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView id="flagAddBtn" fx:id="flagAddBtn" fitHeight="40.0" fitWidth="69.0" onMouseClicked="#handleFlagAddBtn" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@add-filled-white.png" />
                                              </image>

@@ -142,9 +142,7 @@ public class MainController {
         flagsRootPane.getRowConstraints().remove(1);
         flagsRootPane.getChildren().remove(1);
 
-
     }
-
 
     @FXML
     private void handleVariableDropDown(MouseEvent event) {
@@ -226,11 +224,102 @@ public class MainController {
         }
     }
 
+
+    @FXML
+    private void handleFlagDropDown(MouseEvent event) {
+        if (isFlagDropDownOpen) {
+            flagsRootPane.getRowConstraints().remove(1);
+            flagsRootPane.getChildren().remove(1);
+            flagDropDownUpIcon.setRotate(0);
+            isFlagDropDownOpen = false;
+        } else {
+            flagsRootPane.getRowConstraints().add(1, new javafx.scene.layout.RowConstraints(Region.USE_COMPUTED_SIZE));
+            flagsRootPane.getChildren().add(1, flagDropDownPane);
+            flagDropDownUpIcon.setRotate(180);
+            isFlagDropDownOpen = true;
+        }
+    }
+
+    @FXML
+    private void handleFlagNameField(KeyEvent event) {
+        String flagName = flagNameInput.getText();
+        if (flagName.length() > 0) {
+            flagAddBtn.setDisable(false);
+            flagAddBtn.setOpacity(1);
+        } else {
+            flagAddBtn.setDisable(true);
+            flagAddBtn.setOpacity(0.5);
+        }
+    }
+
+    @FXML
+    private void handleFlagAddBtn(MouseEvent event) {
+        String flagName = flagNameInput.getText();
+        String flagValue = flagValueInput.getText();
+
+        //Adding to the bash command manager
+        newFlagData = new FlagData(flagName, flagValue);
+        bashCommandManager.addFlag(newFlagData);
+
+        //Adding to the list
+        try {
+            //Fxml load list nodes
+            listNodesFxmlLoader = new FXMLLoader(getClass().getResource(variableListNodesFxmlPath));
+            HBox flagListNode = listNodesFxmlLoader.load();
+            ObservableList<Node> children = flagListNode.getChildren();
+
+            //Name
+            TextField textF = (TextField) ((HBox) children.get(0)).getChildren().get(0);
+            textF.setText(flagName);
+
+            //Value
+            TextField textF2 = (TextField) ((HBox) children.get(1)).getChildren().get(0);
+            textF2.setText(flagValue);
+
+            //Removing from pane list and from bash command manager
+            ImageView imageView = (ImageView) ((HBox) children.get(2)).getChildren().get(0);
+            imageView.setOnMouseClicked(event1 -> {
+                //Getting the index of the node
+                int index = flagListPane.getChildren().indexOf(flagListNode);
+                flagListPane.getChildren().remove(flagListNode);
+                bashCommandManager.removeFlag(index);
+                updateFlagCount();
+            });
+
+            //Add to list
+            flagListPane.getChildren().add(flagListNode);
+
+            //Clearing the fields
+            flagNameInput.clear();
+            flagValueInput.clear();
+
+            //Disabling the add button
+            flagAddBtn.setDisable(true);
+            flagAddBtn.setOpacity(0.5);
+
+            //Changing the count using bash command manager
+            updateFlagCount();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
     /**
      * Updates the variable count
      */
     private void updateVariableCount() {
         variableCount.setText(bashCommandManager.getVariables().size() + "");
+    }
+
+    /**
+     * Updates the flag count
+     */
+    private void updateFlagCount() {
+        flagCount.setText(bashCommandManager.getFlags().size() + "");
     }
 
 
