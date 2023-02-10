@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane id="rootPane" prefHeight="745.0" prefWidth="732.0" stylesheets="@application-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="rootPane" fx:id="rootPane" prefHeight="745.0" prefWidth="732.0" stylesheets="@application-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.mvdev.gitbgen.controller.MainController">
    <bottom>
       <HBox prefHeight="79.0" prefWidth="632.0" styleClass="app-primary-bgr" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +37,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="38.0" prefWidth="128.0" styleClass="app-secondary-bgr">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="95.0" text="Generate" textAlignment="RIGHT" textOverrun="CLIP">
+                              <Button id="generateButton" fx:id="generateButton" mnemonicParsing="false" prefHeight="48.0" prefWidth="95.0" text="Generate" textAlignment="RIGHT" textOverrun="CLIP">
                                  <styleClass>
                                     <String fx:value="generate-command-button" />
                                     <String fx:value="app-quaternary-bgr" />
@@ -51,10 +51,10 @@
                               <Insets bottom="4.0" top="4.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="515.0" styleClass="app-tertiary-bgr" HBox.hgrow="NEVER">
+                        <HBox id="generatedCodePane" fx:id="generatedCodePane" alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="515.0" styleClass="app-tertiary-bgr" HBox.hgrow="NEVER">
                            <children>
-                              <TextFlow prefHeight="32.0" prefWidth="479.0" />
-                              <ImageView fitHeight="22.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                              <TextFlow id="generatedOutputText" fx:id="generatedOutputText" prefHeight="32.0" prefWidth="479.0" />
+                              <ImageView id="generatedOutputCopy" fx:id="generatedOutputCopy" fitHeight="22.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@clipboard-copy.png" />
                                  </image>
@@ -91,7 +91,7 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane id="codeScrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="app-primary-bgr" BorderPane.alignment="CENTER">
+      <ScrollPane id="codeScrollPane" fx:id="codeScrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="app-primary-bgr" BorderPane.alignment="CENTER">
          <content>
             <GridPane alignment="CENTER" focusTraversable="true" prefHeight="602.0" prefWidth="726.0" vgap="25.0">
               <columnConstraints>
@@ -103,7 +103,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane prefHeight="202.0" prefWidth="706.0">
+                  <GridPane id="variablesRootPane" fx:id="variablesRootPane" prefHeight="202.0" prefWidth="706.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -127,14 +127,14 @@
                                           <String fx:value="variable-counter" />
                                        </styleClass>
                                        <children>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                                          <Text id="variableCount" fx:id="variableCount" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Text>
                                        </children>
                                     </VBox>
-                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="dropDownUpIcon" fx:id="dropDownUpIcon" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@slide-down-rounded.png" />
                                        </image>
@@ -143,14 +143,14 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
+                        <VBox id="varialbeDropDownPane" fx:id="varialbeDropDownPane" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" />
+                              <VBox id="varialbleList" fx:id="varialbleList" prefHeight="200.0" prefWidth="100.0" />
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                                  <children>
                                     <HBox>
                                        <children>
-                                          <TextField promptText="Name">
+                                          <TextField id="variableNameField" fx:id="variableNameField" promptText="Name">
                                              <styleClass>
                                                 <String fx:value="app-tertiary-bgr" />
                                                 <String fx:value="text-field-design" />
@@ -161,12 +161,12 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="40.0" prefWidth="240.0">
                                        <children>
-                                          <TextField promptText="Value">
+                                          <TextField id="variableValueField" fx:id="variableValueField" promptText="Value">
                                              <styleClass>
                                                 <String fx:value="text-field-design" />
                                                 <String fx:value="app-tertiary-bgr" />
                                              </styleClass></TextField>
-                                          <ImageView fitHeight="27.0" fitWidth="33.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView id="variableCalendarBtn" fx:id="variableCalendarBtn" fitHeight="27.0" fitWidth="33.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@calendar-white.png" />
                                              </image>
@@ -182,7 +182,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="77.0" spacing="25.0">
                                        <children>
-                                          <ImageView fitHeight="40.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView id="variableAddBtn" fx:id="variableAddBtn" accessibleRole="BUTTON" fitHeight="40.0" fitWidth="69.0" onMouseClicked="#handleVariableAddBtn" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@add-filled-white.png" />
                                              </image>
@@ -228,7 +228,7 @@
                         </HBox>
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="616.0" spacing="8.0" GridPane.rowIndex="1">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="38.0" prefWidth="89.0">
+                              <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="90.0">
                                  <styleClass>
                                     <String fx:value="app-tertiary-bgr" />
                                     <String fx:value="round-input-names" />
@@ -239,7 +239,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="40.0" prefWidth="513.0" HBox.hgrow="NEVER">
                                  <children>
-                                    <TextField prefHeight="40.0" prefWidth="507.0" promptText="syntax">
+                                    <TextField id="commandSyntaxInput" fx:id="commandSyntaxInput" prefHeight="30.0" prefWidth="506.0" promptText="syntax">
                                        <styleClass>
                                           <String fx:value="text-field-design" />
                                           <String fx:value="app-tertiary-bgr" />
@@ -285,14 +285,14 @@
                                           <String fx:value="variable-counter" />
                                        </styleClass>
                                        <children>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                                          <Text id="flagCount" fx:id="flagCount" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Text>
                                        </children>
                                     </VBox>
-                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="flagDropDownUpIcon" fx:id="flagDropDownUpIcon" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@slide-down-rounded.png" />
                                        </image>
@@ -301,12 +301,12 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
+                        <VBox id="flagDropDownPane" fx:id="flagDropDownPane" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" />
+                              <VBox id="flagListPane" fx:id="flagListPane" prefHeight="200.0" prefWidth="100.0" />
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                                  <children>
-                                    <TextField promptText="Name">
+                                    <TextField id="flagNameInput" fx:id="flagNameInput" promptText="Name">
                                        <styleClass>
                                           <String fx:value="app-tertiary-bgr" />
                                           <String fx:value="text-field-design" />
@@ -315,12 +315,12 @@
                                     </TextField>
                                     <HBox alignment="CENTER" prefHeight="40.0" prefWidth="240.0">
                                        <children>
-                                          <TextField promptText="Value">
+                                          <TextField id="flagValueInput" fx:id="flagValueInput" promptText="Value">
                                              <styleClass>
                                                 <String fx:value="text-field-design" />
                                                 <String fx:value="app-tertiary-bgr" />
                                              </styleClass></TextField>
-                                          <ImageView fitHeight="27.0" fitWidth="33.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView id="flagCalendarBtn" fx:id="flagCalendarBtn" fitHeight="27.0" fitWidth="33.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@calendar-white.png" />
                                              </image>
@@ -336,7 +336,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="77.0" spacing="25.0">
                                        <children>
-                                          <ImageView fitHeight="40.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView id="flagAddBtn" fx:id="flagAddBtn" fitHeight="40.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@add-filled-white.png" />
                                              </image>
