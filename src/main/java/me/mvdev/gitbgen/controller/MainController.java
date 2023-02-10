@@ -1,7 +1,10 @@
 package me.mvdev.gitbgen.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -17,6 +20,8 @@ import javafx.scene.text.TextFlow;
 import me.mvdev.gitbgen.model.FlagData;
 import me.mvdev.gitbgen.model.VariableData;
 import me.mvdev.gitbgen.service.BashCommandManager;
+
+import java.util.ArrayList;
 
 /**
  * FXML Controller class, for controlling the main view.
@@ -94,8 +99,16 @@ public class MainController {
     private ImageView generatedOutputCopy;
 
     /*
+     *  List Nodes - HBox
+     */
+    private ArrayList<HBox> variableListNodes;
+    private ArrayList<HBox> flagListNodes;
+    private FXMLLoader listNodesFxmlLoader;
+
+    /*
      *  Non-FXML
      */
+    private final String variableListNodesFxmlPath = "/me/mvdev/gitbgen/variable-flag-list-node.fxml";
     private boolean isVariableDropDownOpen;
     private boolean isFlagDropDownOpen;
     private BashCommandManager bashCommandManager;
@@ -111,35 +124,115 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        //Hiding index 1 row of variables/flag root grid panes
-//        variablesRootPane.getChildren().get(1).setVisible(false);
-//        flagsRootPane.getChildren().get(1).setVisible(false);
+
+        /* Variable Pane */
+        //Removing the dropdown panes
+        variablesRootPane.getRowConstraints().remove(1);
+        variablesRootPane.getChildren().remove(1);
+
+        //Disabling the add button
+        variableAddBtn.setDisable(true);
+        variableAddBtn.setOpacity(0.5);
+
+        //Initializing the variable list nodes
+        variableListNodes = new ArrayList<>();
+
+        /* Flag Pane */
+        //Removing the dropdown panes
+        flagsRootPane.getRowConstraints().remove(1);
+        flagsRootPane.getChildren().remove(1);
 
 
-
-        //Hiding the dropdown panes
-//        varialbeDropDownPane.setVisible(false);
-//        flagDropDownPane.setVisible(false);
-
-//        mainCenteredPane.getRowConstraints().removeAll(mainCenteredPane.getRowConstraints());
-
-        //Clearing default pref width/height of all Panes
-//        mainCenteredPane.getChildren().forEach(node -> {
-//            if (node instanceof Region) {
-//                ((Region) node).setPrefWidth(0);
-//                ((Region) node).setPrefHeight(0);
-//            }
-//        });
+    }
 
 
+    @FXML
+    private void handleVariableDropDown(MouseEvent event) {
+        if (isVariableDropDownOpen) {
+            variablesRootPane.getRowConstraints().remove(1);
+            variablesRootPane.getChildren().remove(1);
+            dropDownUpIcon.setRotate(0);
+            isVariableDropDownOpen = false;
+        } else {
+            variablesRootPane.getRowConstraints().add(1, new javafx.scene.layout.RowConstraints(Region.USE_COMPUTED_SIZE));
+            variablesRootPane.getChildren().add(1, varialbeDropDownPane);
+            dropDownUpIcon.setRotate(180);
+            isVariableDropDownOpen = true;
+        }
+    }
 
-
+    @FXML
+    public void handleVariableNameField(KeyEvent event) {
+        String variableName = variableNameField.getText();
+        if (variableName.length() > 0) {
+            variableAddBtn.setDisable(false);
+            variableAddBtn.setOpacity(1);
+        } else {
+            variableAddBtn.setDisable(true);
+            variableAddBtn.setOpacity(0.5);
+        }
     }
 
     @FXML
     private void handleVariableAddBtn(MouseEvent event) {
-        variableValueField.setText("1");
+        String variableName = variableNameField.getText();
+        String variableValue = variableValueField.getText();
+
+        //Adding to the bash command manager
+        newVariableData = new VariableData(variableName, variableValue);
+        bashCommandManager.addVariable(newVariableData);
+
+        //Adding to the list
+        try {
+            //Fxml load list nodes
+            listNodesFxmlLoader = new FXMLLoader(getClass().getResource(variableListNodesFxmlPath));
+            HBox variableListNode = listNodesFxmlLoader.load();
+            ObservableList<Node> children = variableListNode.getChildren();
+
+            //Name
+            TextField textF = (TextField) ((HBox) children.get(0)).getChildren().get(0);
+            textF.setText(variableName);
+
+            //Value
+            TextField textF2 = (TextField) ((HBox) children.get(1)).getChildren().get(0);
+            textF2.setText(variableValue);
+
+            //Removing from pane list and from bash command manager
+            ImageView imageView = (ImageView) ((HBox) children.get(2)).getChildren().get(0);
+            imageView.setOnMouseClicked(event1 -> {
+                //Getting the index of the node
+                int index = variableListPane.getChildren().indexOf(variableListNode);
+                variableListPane.getChildren().remove(variableListNode);
+                bashCommandManager.removeVariable(index);
+                updateVariableCount();
+            });
+
+            //Add to list
+            variableListPane.getChildren().add(variableListNode);
+
+            //Clearing the fields
+            variableNameField.clear();
+            variableValueField.clear();
+
+            //Disabling the add button
+            variableAddBtn.setDisable(true);
+            variableAddBtn.setOpacity(0.5);
+
+            //Changing the count using bash command manager
+            updateVariableCount();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    /**
+     * Updates the variable count
+     */
+    private void updateVariableCount() {
+        variableCount.setText(bashCommandManager.getVariables().size() + "");
+    }
+
 
 
 }
