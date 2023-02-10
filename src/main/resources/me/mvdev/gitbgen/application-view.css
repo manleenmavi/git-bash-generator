@@ -14,6 +14,10 @@
     -fx-background-color: #FB2576;
 }
 
+.app-scroll-pane-bgr {
+    -fx-background-color: #404258;
+}
+
 .application-main-vbox {
     /*-fx-width: 100%;*/
 }

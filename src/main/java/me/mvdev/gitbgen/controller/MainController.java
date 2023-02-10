@@ -118,8 +118,8 @@ public class MainController {
 
 
         //Hiding the dropdown panes
-        varialbeDropDownPane.setVisible(false);
-        flagDropDownPane.setVisible(false);
+//        varialbeDropDownPane.setVisible(false);
+//        flagDropDownPane.setVisible(false);
 
 //        mainCenteredPane.getRowConstraints().removeAll(mainCenteredPane.getRowConstraints());
 

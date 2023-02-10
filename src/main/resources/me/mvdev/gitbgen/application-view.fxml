@@ -33,7 +33,7 @@
                   <String fx:value="variables-pane" />
                </styleClass>
                <children>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="686.0" spacing="8.0">
+                  <HBox spacing="8.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="38.0" prefWidth="128.0" styleClass="app-secondary-bgr">
                            <children>
@@ -91,9 +91,9 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane id="codeScrollPane" fx:id="codeScrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="app-primary-bgr" BorderPane.alignment="CENTER">
+      <ScrollPane id="codeScrollPane" fx:id="codeScrollPane" fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <GridPane id="mainCenteredPane" fx:id="mainCenteredPane" alignment="CENTER" focusTraversable="true" prefHeight="602.0" prefWidth="726.0" vgap="25.0">
+            <GridPane id="mainCenteredPane" fx:id="mainCenteredPane" alignment="CENTER" focusTraversable="true" vgap="25.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -120,7 +120,7 @@
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-primary-font" text="Variables" />
                                  </children>
                               </VBox>
-                              <HBox alignment="TOP_RIGHT" prefHeight="57.0" prefWidth="190.0" spacing="20.0" style="-fx-padding: 10;">
+                              <HBox alignment="TOP_RIGHT" prefHeight="34.0" prefWidth="190.0" spacing="20.0" style="-fx-padding: 10;">
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="42.0" prefWidth="42.0">
                                        <styleClass>
@@ -227,12 +227,12 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <VBox GridPane.rowIndex="1">
+                        <VBox prefWidth="100.0" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>
                            <children>
-                              <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                              <HBox alignment="TOP_CENTER" spacing="8.0">
                                  <children>
                                     <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="90.0">
                                        <styleClass>
@@ -285,18 +285,18 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="65.59998168945313" minHeight="10.0" prefHeight="47.199987792968756" vgrow="SOMETIMES" />
                         <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <HBox alignment="CENTER_LEFT" fillHeight="false">
+                        <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="82.0" prefWidth="620.0">
                            <children>
-                              <VBox alignment="BASELINE_LEFT" prefHeight="47.0" prefWidth="428.0">
+                              <VBox alignment="BASELINE_LEFT" prefHeight="66.0" prefWidth="428.0">
                                  <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-primary-font" text="Flags" />
                                  </children>
                               </VBox>
-                              <HBox alignment="TOP_RIGHT" prefHeight="57.0" prefWidth="190.0" spacing="20.0" style="-fx-padding: 10;">
+                              <HBox alignment="TOP_RIGHT" prefHeight="142.0" prefWidth="190.0" spacing="20.0" style="-fx-padding: 10;">
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="42.0" prefWidth="42.0">
                                        <styleClass>
@@ -375,7 +375,7 @@
                         <String fx:value="variables-pane" />
                      </styleClass>
                   </GridPane>
-                  <GridPane GridPane.rowIndex="3">
+                  <GridPane prefHeight="67.0" prefWidth="660.0" GridPane.rowIndex="3">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -396,6 +396,10 @@
                </padding>
             </GridPane>
          </content>
+         <styleClass>
+            <String fx:value="app-primary-bgr" />
+            <String fx:value="app-scroll-pane-bgr" />
+         </styleClass>
       </ScrollPane>
    </center>
    <styleClass>
