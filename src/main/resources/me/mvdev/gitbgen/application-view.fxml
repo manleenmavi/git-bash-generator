@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane id="rootPane" fx:id="rootPane" prefHeight="745.0" prefWidth="732.0" stylesheets="@application-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.mvdev.gitbgen.controller.MainController">
+<BorderPane id="rootPane" fx:id="rootPane" prefHeight="811.0" prefWidth="732.0" stylesheets="@application-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.mvdev.gitbgen.controller.MainController">
    <bottom>
       <HBox prefHeight="79.0" prefWidth="632.0" styleClass="app-primary-bgr" BorderPane.alignment="CENTER">
          <children>
@@ -93,24 +93,25 @@
    <center>
       <ScrollPane id="codeScrollPane" fx:id="codeScrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="app-primary-bgr" BorderPane.alignment="CENTER">
          <content>
-            <GridPane alignment="CENTER" focusTraversable="true" prefHeight="602.0" prefWidth="726.0" vgap="25.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <GridPane id="mainCenteredPane" fx:id="mainCenteredPane" alignment="CENTER" focusTraversable="true" prefHeight="602.0" prefWidth="726.0" vgap="25.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints fillHeight="false" valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="true" vgrow="ALWAYS" />
+               </rowConstraints>
                <children>
-                  <GridPane id="variablesRootPane" fx:id="variablesRootPane" prefHeight="202.0" prefWidth="706.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="65.59998168945313" minHeight="10.0" prefHeight="47.199987792968756" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="93.60001220703126" minHeight="10.0" prefHeight="93.60001220703126" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <GridPane id="variablesRootPane" fx:id="variablesRootPane" vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="65.59998168945313" minHeight="10.0" prefHeight="47.199987792968756" vgrow="SOMETIMES" />
+                        <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -143,10 +144,10 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <VBox id="varialbeDropDownPane" fx:id="varialbeDropDownPane" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
+                        <VBox id="varialbeDropDownPane" fx:id="varialbeDropDownPane" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
                            <children>
-                              <VBox id="varialbleList" fx:id="varialbleList" prefHeight="200.0" prefWidth="100.0" />
-                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                              <VBox id="variableListPane" fx:id="variableListPane" />
+                              <HBox spacing="8.0">
                                  <children>
                                     <HBox>
                                        <children>
@@ -202,18 +203,18 @@
                         <String fx:value="variables-pane" />
                      </styleClass>
                   </GridPane>
-                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="121.0" prefWidth="656.0" GridPane.rowIndex="1">
+                  <GridPane prefHeight="164.0" prefWidth="666.0" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="65.59998168945313" minHeight="10.0" prefHeight="26.000018310546878" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="93.60001220703126" minHeight="10.0" prefHeight="55.59998168945313" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT">
                            <children>
-                              <VBox alignment="BASELINE_LEFT" prefHeight="47.0" prefWidth="428.0">
+                              <VBox alignment="BASELINE_LEFT">
                                  <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-primary-font" text="Command" />
                                  </children>
@@ -226,51 +227,69 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="616.0" spacing="8.0" GridPane.rowIndex="1">
+                        <VBox GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
                            <children>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="90.0">
-                                 <styleClass>
-                                    <String fx:value="app-tertiary-bgr" />
-                                    <String fx:value="round-input-names" />
-                                 </styleClass>
+                              <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="git" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="40.0" prefWidth="513.0" HBox.hgrow="NEVER">
-                                 <children>
-                                    <TextField id="commandSyntaxInput" fx:id="commandSyntaxInput" prefHeight="30.0" prefWidth="506.0" promptText="syntax">
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="90.0">
                                        <styleClass>
-                                          <String fx:value="text-field-design" />
                                           <String fx:value="app-tertiary-bgr" />
-                                       </styleClass></TextField>
+                                          <String fx:value="round-input-names" />
+                                       </styleClass>
+                                       <children>
+                                          <TextField alignment="CENTER" editable="false" text="git">
+                                             <styleClass>
+                                                <String fx:value="text-field-design" />
+                                                <String fx:value="round-input-names" />
+                                                <String fx:value="white-text" />
+                                                <String fx:value="app-tertiary-bgr" />
+                                             </styleClass>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="40.0" prefWidth="513.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <TextField id="commandSyntaxInput" fx:id="commandSyntaxInput" prefHeight="30.0" prefWidth="506.0" promptText="syntax">
+                                             <styleClass>
+                                                <String fx:value="text-field-design" />
+                                                <String fx:value="app-tertiary-bgr" />
+                                             </styleClass>
+                                          </TextField>
+                                       </children>
+                                       <padding>
+                                          <Insets right="8.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="app-tertiary-bgr" />
+                                          <String fx:value="round-input-values" />
+                                       </styleClass>
+                                    </HBox>
                                  </children>
                                  <padding>
-                                    <Insets right="8.0" />
+                                    <Insets top="9.0" />
                                  </padding>
-                                 <styleClass>
-                                    <String fx:value="app-tertiary-bgr" />
-                                    <String fx:value="round-input-values" />
-                                 </styleClass>
                               </HBox>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
                      <styleClass>
                         <String fx:value="app-secondary-bgr" />
                         <String fx:value="variables-pane" />
                      </styleClass>
                   </GridPane>
-                  <GridPane prefHeight="202.0" prefWidth="706.0" GridPane.rowIndex="2">
+                  <GridPane id="flagsRootPane" fx:id="flagsRootPane" vgap="10.0" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="65.59998168945313" minHeight="10.0" prefHeight="47.199987792968756" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="93.60001220703126" minHeight="10.0" prefHeight="93.60001220703126" vgrow="SOMETIMES" />
+                        <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" fillHeight="false">
                            <children>
                               <VBox alignment="BASELINE_LEFT" prefHeight="47.0" prefWidth="428.0">
                                  <children>
@@ -301,10 +320,10 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <VBox id="flagDropDownPane" fx:id="flagDropDownPane" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
+                        <VBox id="flagDropDownPane" fx:id="flagDropDownPane" spacing="5.0" GridPane.rowIndex="1">
                            <children>
-                              <VBox id="flagListPane" fx:id="flagListPane" prefHeight="200.0" prefWidth="100.0" />
-                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                              <VBox id="flagListPane" fx:id="flagListPane" />
+                              <HBox spacing="8.0">
                                  <children>
                                     <TextField id="flagNameInput" fx:id="flagNameInput" promptText="Name">
                                        <styleClass>
@@ -355,6 +374,17 @@
                         <String fx:value="app-secondary-bgr" />
                         <String fx:value="variables-pane" />
                      </styleClass>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="3">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                   </GridPane>
                </children>
                <styleClass>

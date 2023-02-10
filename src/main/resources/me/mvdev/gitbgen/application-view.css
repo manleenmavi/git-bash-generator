@@ -70,6 +70,17 @@
 .text-field-design {
     -fx-focus-color: transparent;
     -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-opacity: 0.8;
+}
+
+.text-field-design:hover {
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.text-field-design:focused {
+    -fx-text-fill: white;
 }
 
 .round-input-names {
@@ -93,8 +104,9 @@
     -fx-padding: 0;
 }
 
-
-
+.white-text {
+    -fx-text-fill: white;
+}
 
 
 

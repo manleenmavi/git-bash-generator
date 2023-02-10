@@ -8,7 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -24,6 +26,9 @@ import me.mvdev.gitbgen.service.BashCommandManager;
  * @version 0.0.1.20230209
  */
 public class MainController {
+
+    @FXML
+    private GridPane mainCenteredPane;
 
     /*
      *  Variable Pane
@@ -43,7 +48,9 @@ public class MainController {
     @FXML
     private VBox varialbeDropDownPane;
     @FXML
-    private HBox variableListPane;
+    private VBox variableListPane;
+    @FXML
+    private GridPane variablesRootPane;
 
     /*
      *  Command Pane
@@ -56,6 +63,8 @@ public class MainController {
      *  Flags Pane
      */
     @FXML
+    private GridPane flagsRootPane;
+    @FXML
     private TextField flagNameInput;
     @FXML
     private TextField flagValueInput;
@@ -64,7 +73,7 @@ public class MainController {
     @FXML
     private VBox flagDropDownPane;
     @FXML
-    private HBox flagListPane;
+    private VBox flagListPane;
     @FXML
     private Text flagCount;
     @FXML
@@ -102,10 +111,33 @@ public class MainController {
 
     @FXML
     private void initialize() {
+        //Hiding index 1 row of variables/flag root grid panes
+//        variablesRootPane.getChildren().get(1).setVisible(false);
+//        flagsRootPane.getChildren().get(1).setVisible(false);
+
+
+
+        //Hiding the dropdown panes
+        varialbeDropDownPane.setVisible(false);
+        flagDropDownPane.setVisible(false);
+
+//        mainCenteredPane.getRowConstraints().removeAll(mainCenteredPane.getRowConstraints());
+
+        //Clearing default pref width/height of all Panes
+//        mainCenteredPane.getChildren().forEach(node -> {
+//            if (node instanceof Region) {
+//                ((Region) node).setPrefWidth(0);
+//                ((Region) node).setPrefHeight(0);
+//            }
+//        });
+
+
+
+
     }
 
     @FXML
-    private void handleVariableAddBtn( MouseEvent event ) {
+    private void handleVariableAddBtn(MouseEvent event) {
         variableValueField.setText("1");
     }
 
