@@ -103,8 +103,8 @@ public class MainController {
     /*
      *  List Nodes - HBox
      */
-    private ArrayList<HBox> variableListNodes;
-    private ArrayList<HBox> flagListNodes;
+//    private ArrayList<HBox> variableListNodes;
+//    private ArrayList<HBox> flagListNodes;
     private FXMLLoader listNodesFxmlLoader;
 
     /*
@@ -137,12 +137,16 @@ public class MainController {
         variableAddBtn.setOpacity(0.5);
 
         //Initializing the variable list nodes
-        variableListNodes = new ArrayList<>();
+//        variableListNodes = new ArrayList<>();
 
         /* Flag Pane */
         //Removing the dropdown panes
         flagsRootPane.getRowConstraints().remove(1);
         flagsRootPane.getChildren().remove(1);
+
+        //Disabling the add button
+        flagAddBtn.setDisable(true);
+        flagAddBtn.setOpacity(0.5);
 
         //Adding focus property to syntax input, if unfocused, then add the command to the bash command manager
         commandSyntaxInput.focusedProperty().addListener((observable, oldValue, newValue) -> {

@@ -101,18 +101,17 @@
    <center>
       <ScrollPane id="codeScrollPane" fx:id="codeScrollPane" fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <GridPane id="mainCenteredPane" fx:id="mainCenteredPane" alignment="CENTER" focusTraversable="true" prefHeight="622.0" prefWidth="721.0" vgap="25.0">
+            <GridPane id="mainCenteredPane" fx:id="mainCenteredPane" alignment="CENTER" focusTraversable="true" vgap="25.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints fillHeight="false" valignment="TOP" vgrow="SOMETIMES" />
-                  <RowConstraints fillHeight="false" valignment="TOP" vgrow="SOMETIMES" />
-                  <RowConstraints fillHeight="false" valignment="TOP" vgrow="SOMETIMES" />
-                  <RowConstraints fillHeight="true" vgrow="ALWAYS" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <GridPane id="variablesRootPane" fx:id="variablesRootPane" vgap="10.0">
+                  <GridPane id="variablesRootPane" fx:id="variablesRootPane" minHeight="10.0" vgap="10.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -342,7 +341,7 @@
                               </VBox>
                               <HBox spacing="8.0">
                                  <children>
-                                    <TextField id="flagNameInput" fx:id="flagNameInput" onKeyTyped="#handleFlagNameField" promptText="Name">
+                                    <TextField id="flagNameInput" fx:id="flagNameInput" onKeyTyped="#handleFlagNameField" promptText="--name">
                                        <styleClass>
                                           <String fx:value="app-tertiary-bgr" />
                                           <String fx:value="text-field-design" />
@@ -392,17 +391,6 @@
                         <String fx:value="app-secondary-bgr" />
                         <String fx:value="variables-pane" />
                      </styleClass>
-                  </GridPane>
-                  <GridPane prefHeight="5.0" prefWidth="660.0" GridPane.rowIndex="3">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
                   </GridPane>
                </children>
                <styleClass>
