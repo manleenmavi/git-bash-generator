@@ -8,7 +8,7 @@ import java.util.Date;
  * Preference will be given to date value, if is date set to true, when toString is called.
  *
  * @author manleenmavi
- * @version 0.0.1.20230208
+ * @version 0.0.2.20230210
  */
 public class VariableData {
     private String name;
@@ -100,7 +100,7 @@ public class VariableData {
             return name + " " + formatter.format(dateValue.toInstant());
 
         } else if (value != null && !value.isEmpty()) { //Checking value
-            return name + " " + value;
+            return name + " \"" + value + "\""; //Adding quotes to value
         } else {
             return name;
         }

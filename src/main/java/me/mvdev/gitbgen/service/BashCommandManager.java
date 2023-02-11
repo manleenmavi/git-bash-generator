@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * VariableData, FlagData will be stored
  *
  * @author manleenmavi
- * @version 0.0.1.20230208
+ * @version 0.0.2.20230210
  */
 public class BashCommandManager {
     String syntax;
@@ -114,12 +114,17 @@ public class BashCommandManager {
      */
     public String getBashCommand() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(syntax);
+        stringBuilder.append("git");
+
+        if (syntax != null && !syntax.isEmpty()) {
+            stringBuilder.append(" ").append(syntax);
+        }
+
         for (VariableData variableData : variables) {
-            stringBuilder.append(" ").append(variableData.toString());
+            stringBuilder.append(" ").append(variableData.getVariableSyntax());
         }
         for (FlagData flagData : flags) {
-            stringBuilder.append(" ").append(flagData.toString());
+            stringBuilder.append(" ").append(flagData.getFlagSyntax());
         }
         return stringBuilder.toString();
     }
