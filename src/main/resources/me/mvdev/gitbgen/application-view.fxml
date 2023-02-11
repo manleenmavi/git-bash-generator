@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <BorderPane id="rootPane" fx:id="rootPane" prefHeight="811.0" prefWidth="732.0" stylesheets="@application-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.mvdev.gitbgen.controller.MainController">
    <bottom>
@@ -37,7 +36,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="38.0" prefWidth="128.0" styleClass="app-secondary-bgr">
                            <children>
-                              <Button id="generateButton" fx:id="generateButton" mnemonicParsing="false" prefHeight="48.0" prefWidth="95.0" text="Generate" textAlignment="RIGHT" textOverrun="CLIP">
+                              <Button id="generateButton" fx:id="generateButton" mnemonicParsing="false" onMouseClicked="#handleGenerateBashEvent" prefHeight="48.0" prefWidth="95.0" text="Generate" textAlignment="RIGHT" textOverrun="CLIP">
                                  <styleClass>
                                     <String fx:value="generate-command-button" />
                                     <String fx:value="app-quaternary-bgr" />
@@ -51,15 +50,24 @@
                               <Insets bottom="4.0" top="4.0" />
                            </padding>
                         </HBox>
-                        <HBox id="generatedCodePane" fx:id="generatedCodePane" alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="515.0" styleClass="app-tertiary-bgr" HBox.hgrow="NEVER">
+                        <HBox id="generatedCodePane" fx:id="generatedCodePane" alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="515.0" styleClass="app-tertiary-bgr" HBox.hgrow="NEVER">
                            <children>
-                              <TextFlow id="generatedOutputText" fx:id="generatedOutputText" prefHeight="32.0" prefWidth="479.0" />
-                              <ImageView id="generatedOutputCopy" fx:id="generatedOutputCopy" fitHeight="22.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                              <TextField id="generatedOutputText" fx:id="generatedOutputText" prefHeight="40.0" prefWidth="482.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="text-field-design" />
+                                    <String fx:value="white-text" />
+                                    <String fx:value="app-tertiary-bgr" />
+                                 </styleClass>
+                              </TextField>
+                              <ImageView id="generatedOutputCopy" fx:id="generatedOutputCopy" fitHeight="22.0" fitWidth="93.0" onMouseClicked="#handleCopyToClipboardEvent" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@clipboard-copy.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets bottom="4.0" left="10.0" top="3.0" />
+                                    <Insets bottom="4.0" left="10.0" right="3.0" top="3.0" />
                                  </HBox.margin>
                               </ImageView>
                            </children>
@@ -93,7 +101,7 @@
    <center>
       <ScrollPane id="codeScrollPane" fx:id="codeScrollPane" fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <GridPane id="mainCenteredPane" fx:id="mainCenteredPane" alignment="CENTER" focusTraversable="true" vgap="25.0">
+            <GridPane id="mainCenteredPane" fx:id="mainCenteredPane" alignment="CENTER" focusTraversable="true" prefHeight="622.0" prefWidth="721.0" vgap="25.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -149,7 +157,8 @@
                               <VBox id="variableListPane" fx:id="variableListPane" alignment="TOP_CENTER" spacing="10.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
-                                 </VBox.margin></VBox>
+                                 </VBox.margin>
+                              </VBox>
                               <HBox spacing="8.0">
                                  <children>
                                     <HBox>
@@ -169,7 +178,8 @@
                                              <styleClass>
                                                 <String fx:value="text-field-design" />
                                                 <String fx:value="app-tertiary-bgr" />
-                                             </styleClass></TextField>
+                                             </styleClass>
+                                          </TextField>
                                           <ImageView id="variableCalendarBtn" fx:id="variableCalendarBtn" fitHeight="27.0" fitWidth="33.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@calendar-white.png" />
@@ -328,7 +338,8 @@
                               <VBox id="flagListPane" fx:id="flagListPane" alignment="TOP_CENTER" spacing="10.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
-                                 </VBox.margin></VBox>
+                                 </VBox.margin>
+                              </VBox>
                               <HBox spacing="8.0">
                                  <children>
                                     <TextField id="flagNameInput" fx:id="flagNameInput" onKeyTyped="#handleFlagNameField" promptText="Name">
@@ -344,7 +355,8 @@
                                              <styleClass>
                                                 <String fx:value="text-field-design" />
                                                 <String fx:value="app-tertiary-bgr" />
-                                             </styleClass></TextField>
+                                             </styleClass>
+                                          </TextField>
                                           <ImageView id="flagCalendarBtn" fx:id="flagCalendarBtn" fitHeight="27.0" fitWidth="33.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@calendar-white.png" />
@@ -381,7 +393,7 @@
                         <String fx:value="variables-pane" />
                      </styleClass>
                   </GridPane>
-                  <GridPane prefHeight="67.0" prefWidth="660.0" GridPane.rowIndex="3">
+                  <GridPane prefHeight="5.0" prefWidth="660.0" GridPane.rowIndex="3">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

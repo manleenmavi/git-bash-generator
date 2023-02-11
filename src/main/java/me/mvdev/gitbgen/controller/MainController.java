@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -94,7 +96,7 @@ public class MainController {
     @FXML
     private HBox generatedCodePane;
     @FXML
-    private TextFlow generatedOutputText;
+    private TextField generatedOutputText;
     @FXML
     private ImageView generatedOutputCopy;
 
@@ -141,6 +143,14 @@ public class MainController {
         //Removing the dropdown panes
         flagsRootPane.getRowConstraints().remove(1);
         flagsRootPane.getChildren().remove(1);
+
+        //Adding focus property to syntax input, if unfocused, then add the command to the bash command manager
+        commandSyntaxInput.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                bashCommandManager.setSyntax(commandSyntaxInput.getText());
+            }
+        });
+
 
     }
 
@@ -306,6 +316,19 @@ public class MainController {
 
     }
 
+
+    @FXML
+    private void handleGenerateBashEvent(MouseEvent event) {
+        generatedOutputText.setText(bashCommandManager.getBashCommand());
+    }
+
+    @FXML
+    private void handleCopyToClipboardEvent(MouseEvent event) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(bashCommandManager.getBashCommand());
+        clipboard.setContent(content);
+    }
 
 
     /**
